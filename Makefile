@@ -11,7 +11,7 @@ endif
 
 .PHONY: all left clean_firmware clean_image clean
 
-all:
+all: config/keymap.dtsi
 	$(shell bin/get_version.sh >> /dev/null)
 	$(DOCKER) build --tag zmk --file Dockerfile .
 	$(DOCKER) run --rm -it --name zmk \
@@ -42,3 +42,7 @@ clean_image:
 	$(DOCKER) image rm zmk docker.io/zmkfirmware/zmk-build-arm:stable
 
 clean: clean_firmware clean_image
+
+config/keymap.dtsi: config/keymap.conf
+	cd config && ./transform.sh
+

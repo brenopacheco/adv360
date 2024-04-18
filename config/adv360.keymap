@@ -19,7 +19,6 @@
 
       hm: homerow_mods {
         compatible = "zmk,behavior-hold-tap";
-        label = "home_row";
         #binding-cells = <2>;
         tapping-term-ms = <200>;
         quick-tap-ms = <0>;
@@ -27,10 +26,68 @@
         bindings = <&kp>, <&kp>;
       };
 
+      he: homerow_mods_mo {
+        compatible = "zmk,behavior-hold-tap";
+        #binding-cells = <2>;
+        tapping-term-ms = <200>;
+        quick-tap-ms = <0>;
+        flavor = "balanced";
+        bindings = <&mo>, <&kp>;
+      };
+
     };
+
+  #define LS(x) &hm LSHIFT x
+  #define LC(x) &hm LCTRL x
+  #define LA(x) &hm LALT x
+  #define LG(x) &hm LGUI x
+  #define SY(x, y) &he x y
 
   keymap {
     compatible = "zmk,keymap";
     #include "keymap.dtsi"
   };
 };
+
+/*
+1 - BASE LAYER
+ ╭────────────────────────────┬────────────────────────────╮
+ │ 󰢤󰢤  1!  2@  3#  4$  5%  󰢤󰢤 │ 󰢤󰢤  6^  7&  8*  (9  )0  󰢤󰢤 │
+ │ 󰢤󰢤   Q   W   E   R   T  󰢤󰢤 │ 󰢤󰢤   Y   U   I   O   P  󰢤󰢤 │
+ │ 󰢤󰢤   A  ⌃S  ⇧D  ⌘F  ⎇G  󰢤󰢤 │ 󰢤󰢤  ⎇H  ⌘J  ⇧K  ⌃L TAB  󰢤󰢤 │
+ │ 󰢤󰢤  󰢤󰢤   Z   X   C  ★V ╭───┴───╮  B   N   M ESC  󰢤󰢤  󰢤󰢤 │
+ │ 󰢤󰢤  󰢤󰢤  󰢤󰢤   ←   →╭────╯       ╰────╮ ↑   ↓  󰢤󰢤  󰢤󰢤  󰢤󰢤 │
+ ╰───────────────────┼────────┬────────┼───────────────────╯
+                 ╭───╯ 󰢤󰢤  󰢤󰢤 │ 󰢤󰢤  󰢤󰢤 ╰───╮
+                 │ BSP DEL 󰢤󰢤 │ 󰢤󰢤  CR SPC │
+                 ╰───────╮ 󰢤󰢤 │ 󰢤󰢤 ╭───────╯
+                         ╰────┴────╯
+2 - MOD (★)
+
+MINUS
+BSLH
+SQT
+EQUAL
+SEMI
+COMMA
+DOT
+FSLH
+GRAVE
+LBKT
+RBKT
+
+
+
+K_MUTE
+K_VOL_DN
+K_VOL_UP
+
+ ╭────────────────────────────┬────────────────────────────╮
+ │ 󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤 │ 󰢤󰢤           󰢤󰢤  󰢤󰢤  󰢤󰢤 │
+ │ 󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤 │ 󰢤󰢤  -_  =+  [{  ]}  󰢤󰢤  󰢤󰢤 │
+ │ 󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤 │ 󰢤󰢤  ;:  '"  `~  \|  󰢤󰢤  󰢤󰢤 │
+ │ 󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤 ╭───┴───╮ /?  ,<  .>  󰢤󰢤  󰢤󰢤  󰢤󰢤 │
+ │ 󰛆   󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤╭────╯       ╰────╮󰢤󰢤  󰢤󰢤  󰢤󰢤  󰢤󰢤   󰛆 │
+ ╰───────────────────╯                 ╰───────────────────╯
+- 󰛆 bootloader
+*/
